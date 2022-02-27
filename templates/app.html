@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+	<link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}"/>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+ <form id='subreddit' name="subreddit" method="POST">
+     <p>
+         <label>Exact name of SubReddit: <input type="text" name="topic"</label>
+     </p>
+     <p>
+         <button type="submit">Send</button>
+     </p>
+ </form>
+         <script>
+             document.querySelector("form").addEventListener("submit", handlesubmit);
+             const handleSubmit = (e) =>{
+                 e.preventDefault()
+                 let myForm = document.getElementById('subreddit');
+                let formData = new FormData(myForm)
+                fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                    }).then(() => console.log('Form successfully submitted')).catch((error) =>
+                    alert(error))
+                }
+             }
+         </script>
+</body>
